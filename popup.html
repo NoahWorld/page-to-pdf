@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root { color-scheme: light; }
+      body { font-family: system-ui, -apple-system, "Segoe UI", Arial; margin: 12px; width: 320px; }
+      h1 { font-size: 16px; margin: 0 0 8px; }
+      .field { margin-bottom: 10px; }
+      label { display: block; font-size: 12px; margin-bottom: 4px; color: #444; }
+      select, input[type="text"] { width: 100%; padding: 6px 8px; font-size: 13px; }
+      .row { display: flex; gap: 8px; }
+      .row > .field { flex: 1; }
+      .checkbox { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #222; }
+      button { width: 100%; padding: 10px; cursor: pointer; font-size: 14px; }
+      .muted { font-size: 12px; color: #666; margin-top: 4px; }
+      .status { margin-top: 10px; font-size: 13px; min-height: 18px; }
+      .actions { display: flex; gap: 8px; margin-top: 8px; }
+      .actions button { flex: 1; padding: 8px; }
+      .hidden { display: none; }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Page to PDF</h1>
+
+    <div class="field">
+      <label for="language" id="languageLabel">Language</label>
+      <select id="language">
+        <option value="auto">Auto (Browser)</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="pt">Português</option>
+        <option value="zh-CN">中文（简体）</option>
+        <option value="zh-TW">中文（繁體）</option>
+        <option value="ar">العربية</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="paperSize" id="paperSizeLabel">Paper size</label>
+        <select id="paperSize">
+          <option value="A4">A4</option>
+          <option value="Letter">Letter</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="orientation" id="orientationLabel">Orientation</label>
+        <select id="orientation">
+          <option value="portrait">Portrait</option>
+          <option value="landscape">Landscape</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="margins" id="marginsLabel">Margins</label>
+      <select id="margins">
+        <option value="default">Default</option>
+        <option value="small">Small</option>
+        <option value="none">None</option>
+      </select>
+    </div>
+
+    <div class="checkbox field">
+      <input type="checkbox" id="includeBg" />
+      <label for="includeBg" id="includeBgLabel">Include background</label>
+    </div>
+
+    <div class="field">
+      <label for="filenameRule" id="fileNameLabel">File name</label>
+      <select id="filenameRule">
+        <option value="title">Title.pdf</option>
+        <option value="domainTitle">Domain - Title.pdf</option>
+        <option value="prefixTitle">Custom prefix + Title.pdf</option>
+      </select>
+      <input type="text" id="prefixInput" class="hidden" placeholder="Prefix (e.g. Notes - )" />
+    </div>
+
+    <div class="checkbox field">
+      <input type="checkbox" id="autoScroll" />
+      <label for="autoScroll" id="autoScrollLabel">Auto-load long page content (for lazy-loading pages)</label>
+    </div>
+
+    <button id="exportBtn">Export current page to PDF</button>
+    <div class="status" id="status"></div>
+
+    <div class="actions">
+      <button id="openDownloads" class="hidden">Open downloads</button>
+      <button id="copyError" class="hidden">Copy error</button>
+    </div>
+
+    <div class="muted" id="tipText">Tip: some pages may block printing or require login.</div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
